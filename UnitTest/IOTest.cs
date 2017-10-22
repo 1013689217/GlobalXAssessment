@@ -16,8 +16,8 @@ namespace UnitTest
         [TestMethod]
         public void ReadFileTest()
         {
-            string result = "abcd\r\nefgh\r\n";
-            NameSorter.IO currentIO = new NameSorter.IO("read","");
+            string result = "abcd\nefgh\n";
+            NameSorter.IO currentIO = new NameSorter.IO("read.txt","");
             Assert.AreEqual(result, currentIO.ReadFile());
         }
 
@@ -27,8 +27,8 @@ namespace UnitTest
         [TestMethod]
         public void WriteFileTest()
         {
-            string result = "abcd\r\nefgh\r\n";
-            NameSorter.IO currentIO = new NameSorter.IO("write","write");
+            string result = "abcd\nefgh\n";
+            NameSorter.IO currentIO = new NameSorter.IO("write.txt", "write.txt");
             currentIO.WriteFile(result);
             Assert.AreEqual(result, currentIO.ReadFile());
         }
@@ -40,7 +40,7 @@ namespace UnitTest
         [ExpectedException(typeof(ArgumentNullException))]
         public void NullInputPathTest()
         {
-            NameSorter.IO currentIO = new NameSorter.IO(null, "write");
+            NameSorter.IO currentIO = new NameSorter.IO(null, "write.txt");
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace UnitTest
         [ExpectedException(typeof(ArgumentException))]
         public void EmptyInputPathTest()
         {
-            NameSorter.IO currentIO = new NameSorter.IO(string.Empty, "write");
+            NameSorter.IO currentIO = new NameSorter.IO(string.Empty, "write.txt");
         }
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace UnitTest
         [ExpectedException(typeof(FileNotFoundException))]
         public void InvalidInputPathTest()
         {
-            NameSorter.IO currentIO = new NameSorter.IO("nothing", "write");
+            NameSorter.IO currentIO = new NameSorter.IO("nothing.txt", "write.txt");
             currentIO.ReadFile();
         }
 
@@ -71,7 +71,7 @@ namespace UnitTest
         [ExpectedException(typeof(DirectoryNotFoundException))]
         public void NullOutputPathTest()
         {
-            NameSorter.IO currentIO = new NameSorter.IO("read", null);
+            NameSorter.IO currentIO = new NameSorter.IO("read.txt", null);
             currentIO.WriteFile("");
         }
 
@@ -82,7 +82,7 @@ namespace UnitTest
         [ExpectedException(typeof(DirectoryNotFoundException))]
         public void EmptyOutputPathTest()
         {
-            NameSorter.IO currentIO = new NameSorter.IO("read", string.Empty);
+            NameSorter.IO currentIO = new NameSorter.IO("read.txt", string.Empty);
             currentIO.WriteFile("");
         }
     }
