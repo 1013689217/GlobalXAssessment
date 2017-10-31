@@ -16,7 +16,7 @@ namespace UnitTest
         [TestMethod]
         public void ReadFileTest()
         {
-            string result = "abcd\nefgh\n";
+            string result = "abcd\r\nefgh\r\n";
             NameSorter.IO currentIO = new NameSorter.IO("read.txt","");
             Assert.AreEqual(result, currentIO.ReadFile());
         }
