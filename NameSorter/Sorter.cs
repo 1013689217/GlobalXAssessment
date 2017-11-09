@@ -5,16 +5,24 @@ namespace NameSorter
     /// <summary>
     /// The sort algorithm of NameSorter.
     /// </summary>
-    public static class Sorter
+    public class Sorter:ISorter
     {
         /// <summary>
         /// Sort a name list in alphabet order.
         /// </summary>
         /// <param name="NameList">The unsorted name list.</param>
         /// <returns>The sorted name list.</returns>
-        public static string[] NameSort(string[] NameList)
+        public string[] NameSort(string[] nameList)
         {
-            return NameList.OrderBy(x => x.Split(' ').Last()).ThenBy(x => x).ToArray();
+            return nameList.OrderBy(x => x.Split(' ').Last()).ThenBy(x => x).ToArray();
+        }
+    }
+
+    public class DescendingSorter : ISorter
+    {
+        public string[] NameSort(string[] nameList)
+        {
+            return nameList.OrderByDescending(x => x.Split(' ').Last()).ThenBy(x => x).ToArray();
         }
     }
 }
