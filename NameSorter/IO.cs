@@ -5,7 +5,7 @@ namespace NameSorter
     /// <summary>
     /// Management of file reading and writing.
     /// </summary>
-    public class IO
+    class IO
     {
         /// <summary>
         /// inputPath discribes the path of input file and outputPath discribes the path of output file.

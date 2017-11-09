@@ -13,13 +13,24 @@ namespace NameSorter
         {
             try
             {
-                if (args != null && args.Length == 1 && !string.IsNullOrEmpty(args[0]))
+                if (args != null && !string.IsNullOrEmpty(args[0]))
                 {
                     IO currentIO = new IO(args[0], "sorted-names-list.txt");
                     string rawNameList = currentIO.ReadFile();
-                    string sortedNameList = NameUtil.NameCombine(Sorter.NameSort(NameUtil.NameSplit(rawNameList)));
-                    currentIO.WriteFile(sortedNameList);
-                    Console.WriteLine(sortedNameList);
+                    ISorter sorter = new Sorter();
+                    ISorter descendingSorter = new DescendingSorter();
+                    if (!string.IsNullOrEmpty(args[1]) && args[1].Equals("d"))
+                    {
+                        string sortedNameList = NameUtil.NameCombine(descendingSorter.NameSort(NameUtil.NameSplit(rawNameList)));
+                        currentIO.WriteFile(sortedNameList);
+                        Console.WriteLine(sortedNameList);
+                    }
+                    else
+                    {
+                        string sortedNameList = NameUtil.NameCombine(sorter.NameSort(NameUtil.NameSplit(rawNameList)));
+                        currentIO.WriteFile(sortedNameList);
+                        Console.WriteLine(sortedNameList);
+                    }
                 }
                 else
                 {
