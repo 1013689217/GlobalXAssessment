@@ -17,20 +17,18 @@ namespace NameSorter
                 {
                     IO currentIO = new IO(args[0], "sorted-names-list.txt");
                     string rawNameList = currentIO.ReadFile();
-                    ISorter sorter = new Sorter();
-                    ISorter descendingSorter = new DescendingSorter();
-                    if (!string.IsNullOrEmpty(args[1]) && args[1].Equals("d"))
+                    ISorter sorter;
+                    if (args.Length>1 && !string.IsNullOrEmpty(args[1]) && args[1].ToLower().Equals("d"))
                     {
-                        string sortedNameList = NameUtil.NameCombine(descendingSorter.NameSort(NameUtil.NameSplit(rawNameList)));
-                        currentIO.WriteFile(sortedNameList);
-                        Console.WriteLine(sortedNameList);
+                        sorter = new DescendingSorter();
                     }
                     else
                     {
-                        string sortedNameList = NameUtil.NameCombine(sorter.NameSort(NameUtil.NameSplit(rawNameList)));
-                        currentIO.WriteFile(sortedNameList);
-                        Console.WriteLine(sortedNameList);
+                        sorter = new Sorter();
                     }
+                    string sortedNameList = NameUtil.NameCombine(sorter.NameSort(NameUtil.NameSplit(rawNameList)));
+                    currentIO.WriteFile(sortedNameList);
+                    Console.WriteLine(sortedNameList);
                 }
                 else
                 {

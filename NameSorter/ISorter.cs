@@ -8,6 +8,6 @@ namespace NameSorter
 {
     interface ISorter
     {
-        string[] NameSort(string[]);
+        string[] NameSort(string[] nameList);
     }
 }
